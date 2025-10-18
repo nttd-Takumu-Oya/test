@@ -3,6 +3,7 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+import { PipelineStage } from './pipeline-stage';
 
 export class PipelineStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
@@ -23,5 +24,7 @@ export class PipelineStack extends cdk.Stack {
         commands: ['npm ci', 'npm run build', 'npx cdk synth']
       })
     });
+    const deploy = new PipelineStage(this, "Deploy");
+    const deployStage = pipeline.addStage(deploy);
   }
 }
