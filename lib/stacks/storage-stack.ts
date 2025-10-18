@@ -9,7 +9,7 @@ export class StorageStack extends cdk.Stack {
     super(scope, id, props);
     // test bucket
     this.testBucket = new s3.Bucket(this, 'ArtifactBucket', {
-      bucketName: "dev-bjm-test-cdk-bucket",
+      bucketName: "pipeline-test-cdk-bucket",
       versioned: true,
       encryption: s3.BucketEncryption.S3_MANAGED,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
